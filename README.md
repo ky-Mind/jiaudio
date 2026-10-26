@@ -1,13 +1,13 @@
-CAVA [![Build Status](https://github.com/karlstav/cava/workflows/build-and-test/badge.svg)](https://github.com/karlstav/cava/actions)
+jia [![Build Status](https://github.com/karlstav/jia/workflows/build-and-test/badge.svg)](https://github.com/karlstav/jia/actions)
 ====================
 
 **C**ross-platform **A**udio **V**isu**a**lizer
 
 by [Karl Stavestrand](mailto:karl@stavestrand.no)
 
-Now also supports [dumb terminals](https://github.com/karlstav/cava/blob/master/TERMINAL.md)!
+Now also supports [dumb terminals](https://github.com/karlstav/jia/blob/master/TERMINAL.md)!
 
-![spectrum](https://github.com/karlstav/cava/blob/master/example_files/cava.gif "spectrum")
+![spectrum](https://github.com/karlstav/jia/blob/master/example_files/jia.gif "spectrum")
 
 [Demo video](https://youtu.be/9PSp8VA6yjU)
 
@@ -31,8 +31,8 @@ Now also supports [dumb terminals](https://github.com/karlstav/cava/blob/master/
 - [Usage](#usage)
   - [Controls](#controls)
 - [Configuration](#configuration)
-- [Using cava in other applications](#using-cava-in-other-applications)
-  - [cavacore](#cavacore-library)
+- [Using jia in other applications](#using-jia-in-other-applications)
+  - [jiacore](#jiacore-library)
   - [Raw Output](#raw-output)
 - [Contribution](#contribution)
 
@@ -41,7 +41,7 @@ Now also supports [dumb terminals](https://github.com/karlstav/cava/blob/master/
 What it is
 ----------
 
-Cava is a bar spectrum audio visualizer for terminal or desktop (SDL).
+jia is a bar spectrum audio visualizer for terminal or desktop (SDL).
 
 works on:
 * Linux
@@ -84,7 +84,7 @@ Optional components:
 * autoconf-archive (needed for setting up OpenGL)
 * [ncursesw dev files](http://www.gnu.org/software/ncurses/) (bundled in ncurses in arch)
 
-Only FFTW, iniparser and the build tools are actually required for CAVA to compile, but this will only give you the ability to read from fifo files. To capture audio directly from your system, additional audio development files may be needed depending on your input backend (pipewire, pulseaudio, alsa, sndio, jack or portaudio). On macOS, the built-in Core Audio framework is supported without extra audio capture libraries.
+Only FFTW, iniparser and the build tools are actually required for jia to compile, but this will only give you the ability to read from fifo files. To capture audio directly from your system, additional audio development files may be needed depending on your input backend (pipewire, pulseaudio, alsa, sndio, jack or portaudio). On macOS, the built-in Core Audio framework is supported without extra audio capture libraries.
 
 Ncurses can be used as an alternative output method if you have issues with the default one. But it is not required.
 
@@ -181,7 +181,7 @@ CMake can also be used for linux, but autoconf/automake remains the default supp
 
 #### Installing
 
-Install `cava` to default `/usr/local`:
+Install `jia` to default `/usr/local`:
 
     make install
 
@@ -201,13 +201,13 @@ All distro specific installation sources might be out of date. Please check vers
 
 #### FreeBSD
 
-    pkg install cava
+    pkg install jia
 
 #### openSUSE
 
-Tumbleweed users have cava in their repo. They can just use:
+Tumbleweed users have jia in their repo. They can just use:
 
-    zypper in cava
+    zypper in jia
 
 Leap users need to add the multimedia:apps repository first:
 
@@ -217,36 +217,36 @@ If you use another version just replace *openSUSE_Leap_42.2* with *openSUSE_13.2
 
 #### Fedora
 
-Cava is available in Fedora 26 and later.  You can install Cava by
+jia is available in Fedora 26 and later.  You can install jia by
 running:
 
-    dnf install cava
+    dnf install jia
 
 #### Arch
 
-Cava is available in Arch Linux official repo:
+jia is available in Arch Linux official repo:
 
-    pacman -S cava
+    pacman -S jia
 
 #### Ubuntu/Debian
 
 ##### Ubuntu 20.10 or more recent / Debian 12 (Bookworm)
 
-    sudo apt install cava
+    sudo apt install jia
 
 ##### Older Ubuntu
 
-Harshal Sheth has added CAVA to his PPA, it can be installed with:
+Harshal Sheth has added jia to his PPA, it can be installed with:
 
     add-apt-repository ppa:hsheth2/ppa
     apt update
-    apt install cava
+    apt install jia
 
 #### macOS
 
-cava is in homebrew.
+jia is in homebrew.
 
-    brew install cava
+    brew install jia
 
 
 
@@ -291,7 +291,7 @@ Hopefully your `aplay -l` should now contain a loopback interface.
 
 To make it persistent across boot add the line `snd-aloop` to "/etc/modules". To keep it from being loaded as the first soundcard add the line `options snd-aloop index=1` to "/etc/modprobe.d/alsa-base.conf", this will load it at '1'. You can replace '1' with whatever makes most sense in your audio setup.
 
-Playing the audio through your Loopback interface makes it possible for cava to capture it, but there will be no sound in your speakers. In order to play audio on the loopback interface and your actual interface you must make use of the ALSA multi channel.
+Playing the audio through your Loopback interface makes it possible for jia to capture it, but there will be no sound in your speakers. In order to play audio on the loopback interface and your actual interface you must make use of the ALSA multi channel.
 
 Look at the included example file `example_files/etc/asound.conf` on how to use the multi channel. I was able to make this work with an HD Audio Intel PCH sound card, but I had no luck with a USB DAC.
 
@@ -305,7 +305,7 @@ dtoverlay=i2s-mmap
 
 #### dmix
 
-@reluekiss, was able to make cava work with dmix. Check out the example config in `example_files/etc/asound_dmix.conf` and issue [534](https://github.com/karlstav/cava/issues/534).
+@reluekiss, was able to make jia work with dmix. Check out the example config in `example_files/etc/asound_dmix.conf` and issue [534](https://github.com/karlstav/jia/issues/534).
 
 
 
@@ -338,7 +338,7 @@ I had some trouble with sync (the visualizer was ahead of the sound). Reducing t
 
 Sndio is the audio framework used on OpenBSD, but it's also available on FreeBSD, NetBSD and Linux.
 So far this is only tested on FreeBSD, but it's probably very similar on other operating systems. The
-following example demonstrates how to setup CAVA for sndio on FreeBSD (please consult the [OSS](#oss)
+following example demonstrates how to setup jia for sndio on FreeBSD (please consult the [OSS](#oss)
 section for a deeper explanation of the various `pcmX` sound devices and the corresponding `/dev/dspX`
 audio devices in this example).
 ```sh
@@ -360,7 +360,7 @@ overrides `AUDIODEVICE` if both are set) and a sndio-aware program tries to open
 descriptor or an unspecified device descriptor, then the program will use the device descriptor specified
 in the environment variable.
 
-Now in order to visualize the mic input in CAVA, the `source` value in the configuration file must
+Now in order to visualize the mic input in jia, the `source` value in the configuration file must
 be set to the corresponding audio descriptor:
 
     source = default    # default; symlink to rsnd/0 in this example; AUDIORECDEVICE and AUDIODEVICE evaluation
@@ -372,24 +372,24 @@ be set to the corresponding audio descriptor:
 With `source = default` one can switch the visualization on the commandline without changing the configuration
 file again:
 ```sh
-$ AUDIODEVICE=rsnd/0 cava
-$ AUDIODEVICE=rsnd/1 cava
-$ AUDIODEVICE=rsnd/2 cava
+$ AUDIODEVICE=rsnd/0 jia
+$ AUDIODEVICE=rsnd/1 jia
+$ AUDIODEVICE=rsnd/2 jia
 ```
 Sndio can't record the played back audio with just the raw device descriptors, i.e. the sounds from
 a music player or a browser which play on the external stereo speakers through `rsnd/0` are not visualized
-in CAVA. For this to work the sndio server has to be started and a monitoring sub-device has to be
+in jia. For this to work the sndio server has to be started and a monitoring sub-device has to be
 created. The following example shows how to start the server and create a monitoring sub-device `snd/0`
-from `rsnd/0` and then start CAVA with `AUDIODEVICE` pointing to the new monitoring sub-device:
+from `rsnd/0` and then start jia with `AUDIODEVICE` pointing to the new monitoring sub-device:
 ```sh
 $ sndiod -f rsnd/0 -m play,mon
-$ AUDIODEVICE=snd/0 cava
+$ AUDIODEVICE=snd/0 jia
 ```
 Switch between the speakers and the USB headset:
 ```sh
 $ sndiod -f rsnd/2 -m play,mon -s usb -f rsnd/0 -m play,mon -s speakers
-$ AUDIODEVICE=snd/usb cava
-$ AUDIODEVICE=snd/speakers cava
+$ AUDIODEVICE=snd/usb jia
+$ AUDIODEVICE=snd/speakers jia
 ```
 Consult the manpage `sndiod(8)` for further information regarding configuration and startup of a sndio
 server.
@@ -399,7 +399,7 @@ server.
     method = oss
 
 The audio system used on FreeBSD is the Open Sound System (OSS).
-The following example demonstrates how to setup CAVA for OSS on FreeBSD:
+The following example demonstrates how to setup jia for OSS on FreeBSD:
 ```sh
 $ cat /dev/sndstat
 Installed devices:
@@ -421,7 +421,7 @@ there are `/dev/dsp0`, `/dev/dsp1` and `/dev/dsp2` (the system creates them when
 listed via `ls /dev` if they are currently not in use). The system also creates an implicit `/dev/dsp`,
 which acts like a symlink to the `default` audio device, in this example to `/dev/dsp0`.
 
-Now in order to visualize the mic input in CAVA, the `source` value in the configuration file must
+Now in order to visualize the mic input in jia, the `source` value in the configuration file must
 be set to the corresponding audio device:
 
     source = /dev/dsp     # default; symlink to /dev/dsp0 in this example
@@ -430,13 +430,13 @@ be set to the corresponding audio device:
     source = /dev/dsp2    # for the pcm2 mic on the USB headset
 
 OSS can't record the outgoing audio on its own, i.e. the sounds from a music player or a browser which
-play on the external stereo speakers through `/dev/dsp0` are not visualized in CAVA. A solution is
+play on the external stereo speakers through `/dev/dsp0` are not visualized in jia. A solution is
 to use Virtual OSS. It can create virtual audio devices from existing audio devices, in particular
 it can create a loopback audio device from `/dev/dsp0` and from which the played back audio can be
-fed into CAVA:
+fed into jia:
 ```sh
 $ doas pkg install virtual_oss
-$ doas virtual_oss -r44100 -b16 -c2 -s4ms -O /dev/dsp0 -R /dev/null -T /dev/sndstat -l dsp.cava
+$ doas virtual_oss -r44100 -b16 -c2 -s4ms -O /dev/dsp0 -R /dev/null -T /dev/sndstat -l dsp.jia
 
 $ cat /dev/sndstat
 Installed devices:
@@ -444,12 +444,12 @@ pcm0: <Realtek ALC1220 (Rear Analog)> (play/rec) default
 pcm1: <Realtek ALC1220 (Front Analog Mic)> (rec)
 pcm2: <USB audio> (play/rec)
 Installed devices from userspace:
-dsp.cava: <Virtual OSS> (play/rec)
+dsp.jia: <Virtual OSS> (play/rec)
 ```
-It created a virtual loopback device `/dev/dsp.cava` from `/dev/dsp0`. Now the audio is visualized
-in CAVA with `source = /dev/dsp.cava` in the configuration file. The playback program must have a configuration
-to use the `/dev/dsp.cava` device. For programs where this is not possible, e.g. which always use `/dev/dsp`,
-replace `-l dsp.cava` with `-l dsp`. Virtual OSS can be configured and started as a service on FreeBSD.
+It created a virtual loopback device `/dev/dsp.jia` from `/dev/dsp0`. Now the audio is visualized
+in jia with `source = /dev/dsp.jia` in the configuration file. The playback program must have a configuration
+to use the `/dev/dsp.jia` device. For programs where this is not possible, e.g. which always use `/dev/dsp`,
+replace `-l dsp.jia` with `-l dsp`. Virtual OSS can be configured and started as a service on FreeBSD.
 
 ### JACK
 
@@ -458,10 +458,10 @@ replace `-l dsp.cava` with `-l dsp`. Virtual OSS can be configured and started a
 The JACK Audio Connection Kit (JACK) is a professional sound server API which is available on several
 operating systems, e.g. FreeBSD and Linux.
 
-CAVA is a JACK client with the base client name `cava` and adheres to the standard server start and
-stop behaviour, i.e. CAVA starts a JACK server if none is already running and the environment variable
+jia is a JACK client with the base client name `jia` and adheres to the standard server start and
+stop behaviour, i.e. jia starts a JACK server if none is already running and the environment variable
 `JACK_START_SERVER` is defined, in which case the server also stops when all clients have exited. The
-`source` in the CAVA configuration file specifies the name of the JACK server to which CAVA tries to
+`source` in the jia configuration file specifies the name of the JACK server to which jia tries to
 connect to. The default value is `default`, which is also the default JACK server name. The value can
 be empty, in which case it implies `default`. Therefore the following three entries are equivalent:
 
@@ -479,9 +479,9 @@ are equivalent:
 Consult the manpage `jackd(1)` for further information regarding configuration and startup of a JACK
 server.
 
-CAVA creates terminal audio-typed (so no MIDI support) input ports. These ports can connect to output
-ports of other JACK clients, e.g. connect to the output ports of a music player and CAVA will visualize
-the music. Currently CAVA supports up to two input ports, i.e. it supports mono and stereo. The number
+jia creates terminal audio-typed (so no MIDI support) input ports. These ports can connect to output
+ports of other JACK clients, e.g. connect to the output ports of a music player and jia will visualize
+the music. Currently jia supports up to two input ports, i.e. it supports mono and stereo. The number
 of input ports can be controlled via the `channels` option in the input section of the configuration
 file:
 
@@ -489,19 +489,19 @@ file:
     channels = 2    # two input ports, stereo (default)
 
 The port's short name is simply `M` for mono, and `L` and `R` for stereo. The full name of the input
-port according to the base client name is `cava:M` for mono, and `cava:L` and `cava:R` for stereo.
+port according to the base client name is `jia:M` for mono, and `jia:L` and `jia:R` for stereo.
 
-The option `autoconnect` controls the connection strategy for CAVA's ports to other client's ports:
+The option `autoconnect` controls the connection strategy for jia's ports to other client's ports:
 
     autoconnect = 0    # don't connect to other ports automatically
     autoconnect = 1    # only connect to other ports during startup
     autoconnect = 2    # reconnect to new ports regularly (default)
 
 The automatic connection strategies scan the physical terminal input-ports, i.e. the real audio device
-which actually outputs the sound, and applies the same connections to CAVA's ports. In this way CAVA
+which actually outputs the sound, and applies the same connections to jia's ports. In this way jia
 visualizes the played back audio from JACK clients by default.
 
-In order to control and manage the connection between CAVA's ports and ports of other client programs,
+In order to control and manage the connection between jia's ports and ports of other client programs,
 there are connection management programs for JACK. Some well known connection managers with a graphical
 user interface are QjackCtl and Cadence. The JACK package itself often comes with CLI tools. Depending
 on the operating system it could be necessary to install them separately, e.g. on FreeBSD:
@@ -517,20 +517,20 @@ system:capture_1
 system:capture_2
 system:playback_1
 system:playback_2
-cava:L
+jia:L
 moc:output0
 moc:output1
-cava:R
+jia:R
 ```
 This listing shows all full port names that are currently available. These correspond to two external
-JACK clients, `cava` and `moc`, and one internal JACK client `system`. The types and current active
+JACK clients, `jia` and `moc`, and one internal JACK client `system`. The types and current active
 connections between the ports can be listed with the `-p` and `-c` switches for `jack_lsp`. In order
-to connect the ports of CAVA and MOC, `jack_connect` is used:
+to connect the ports of jia and MOC, `jack_connect` is used:
 ```sh
-$ jack_connect cava:L moc:output0
-$ jack_connect cava:R moc:output1
+$ jack_connect jia:L moc:output0
+$ jack_connect jia:R moc:output1
 ```
-Now CAVA visualizes the outgoing audio from MOC.
+Now jia visualizes the outgoing audio from MOC.
 
 ### squeezelite
 [squeezelite](https://en.wikipedia.org/wiki/Squeezelite) is one of several software clients available for the Logitech Media Server. Squeezelite can export its audio data as shared memory, which is what this input module uses.
@@ -597,7 +597,7 @@ source = "Soundflower (2ch)"
 
 
 
-Note: Cava doesn't render correctly within the default macOS terminal. In order to achieve an optimal display, install [Kitty](https://sw.kovidgoyal.net/kitty/index.html). Beware that you may run in to the issue presented in #109; however, it can be resolved with [this](https://stackoverflow.com/questions/7165108/in-os-x-lion-lang-is-not-set-to-utf-8-how-to-fix-it).
+Note: jia doesn't render correctly within the default macOS terminal. In order to achieve an optimal display, install [Kitty](https://sw.kovidgoyal.net/kitty/index.html). Beware that you may run in to the issue presented in #109; however, it can be resolved with [this](https://stackoverflow.com/questions/7165108/in-os-x-lion-lang-is-not-set-to-utf-8-how-to-fix-it).
 
 
 ### Windows
@@ -612,7 +612,7 @@ Running via ssh
 
 To run via ssh to an external monitor, redirect output to `/dev/console`:
 
-     ~# ./cava  <> /dev/console >&0 2>&1
+     ~# ./jia  <> /dev/console >&0 2>&1
 
 exit with ctrl+z then run 'bg' to keep it running after you log out.
 
@@ -623,15 +623,15 @@ exit with ctrl+z then run 'bg' to keep it running after you log out.
 
 ### No bars in terminal
 
-Most likely issue [#399](https://github.com/karlstav/cava/issues/399). Locale settings need to be set correctly in order for cava to work.
+Most likely issue [#399](https://github.com/karlstav/jia/issues/399). Locale settings need to be set correctly in order for jia to work.
 
 ### Bars not moving
 
-Read the chapter on [capturing audio](#capturing-audio). Depending on your system this might not work automatically. For example if you have pipewire dev files on your system, but are still using pulseaudio, you will have to specify `pulse` as your input method in the cava config file.
+Read the chapter on [capturing audio](#capturing-audio). Depending on your system this might not work automatically. For example if you have pipewire dev files on your system, but are still using pulseaudio, you will have to specify `pulse` as your input method in the jia config file.
 
 ### Visualizer reacts to microphone instead of output
 
-This is a known issue with pipewire. Try the workaround described [here](https://github.com/karlstav/cava/issues/422#issuecomment-994270910)
+This is a known issue with pipewire. Try the workaround described [here](https://github.com/karlstav/jia/issues/422#issuecomment-994270910)
 
 ### Vertical lines in bars
 
@@ -643,26 +643,26 @@ Since the graphics are simply based on characters, try decreasing the font size.
 
 ### Low frame rate
 
-Some terminal emulators are just slow. Cava will look best in a GPU based terminal like kitty or alacritty. You can also try to increase the font size
+Some terminal emulators are just slow. jia will look best in a GPU based terminal like kitty or alacritty. You can also try to increase the font size
 
 ### Font is changed in ttys after exit
 
-If you run cava in a TTY (like ctrl+alt+F2) the program will change the font to the included `cava.psf` (actually a slightly modified "unifont").
+If you run jia in a TTY (like ctrl+alt+F2) the program will change the font to the included `jia.psf` (actually a slightly modified "unifont").
 
 In console fonts it seems that only 256 Unicode characters are supported, probably because they are bitmap fonts. I could not find a font with Unicode characters 2581-2587 (the 1/8 - 7/8 blocks used on the top of each bar to increase resolution).
 
-So in `cava.psf`, the characters 1-7 are actually replaced by Unicode characters 2581-2587. When cava exits, it changes the font back. If cava exits abnormally and you notice that 1-7 are replaced by partial blocks, just change the font with `setfont`.
+So in `jia.psf`, the characters 1-7 are actually replaced by Unicode characters 2581-2587. When jia exits, it changes the font back. If jia exits abnormally and you notice that 1-7 are replaced by partial blocks, just change the font with `setfont`.
 
-Actually, `setfont` is supposed to return the default font, but this usually isn't set. I haven't found another way to get the current font. So cava sets the font to "Lat2-Fixed16" when interrupted. All major distros should have it. It will revert to your default font at reboot.
+Actually, `setfont` is supposed to return the default font, but this usually isn't set. I haven't found another way to get the current font. So jia sets the font to "Lat2-Fixed16" when interrupted. All major distros should have it. It will revert to your default font at reboot.
 
 ### Gradient not working in Konsole
 
-Konsole simply does not support this. [#194](https://github.com/karlstav/cava/issues/194)
+Konsole simply does not support this. [#194](https://github.com/karlstav/jia/issues/194)
 
 Usage
 -----
 
-    Usage : cava [options]
+    Usage : jia [options]
     Visualize audio input in terminal.
 
     Options:
@@ -673,7 +673,7 @@ Usage
 
 Exit with ctrl+c or q.
 
-If cava quits unexpectedly or is force killed, echo must be turned on manually with `stty -echo`.
+If jia quits unexpectedly or is force killed, echo must be turned on manually with `stty -echo`.
 
 ### Controls
 
@@ -691,17 +691,17 @@ If cava quits unexpectedly or is force killed, echo must be turned on manually w
 Configuration
 -------------
 
-By default a configuration file is created upon first launch in `$XDG_CONFIG_HOME/cava/config` or `$HOME/.config/cava/config`, but cava can also be made to use a different file with the `-p` option.
+By default a configuration file is created upon first launch in `$XDG_CONFIG_HOME/jia/config` or `$HOME/.config/jia/config`, but jia can also be made to use a different file with the `-p` option.
 
-Sending cava a SIGUSR1 signal, will force cava to reload its configuration file. Thus, it behaves as if the user pressed <kbd>r</kbd> in the terminal. One might send a SIGUSR1 signal using `pkill` or `killall`.
+Sending jia a SIGUSR1 signal, will force jia to reload its configuration file. Thus, it behaves as if the user pressed <kbd>r</kbd> in the terminal. One might send a SIGUSR1 signal using `pkill` or `killall`.
 For example:
 ```
-$ pkill -USR1 cava
+$ pkill -USR1 jia
 ```
 
-Similarly, sending cava a SIGUSR2 signal will only reload the colors from the configuration file, which is the same as pressing <kbd>c</kbd> in the terminal. This is slightly faster than reloading the entire config as the audio processing does not need to reinitialize.
+Similarly, sending jia a SIGUSR2 signal will only reload the colors from the configuration file, which is the same as pressing <kbd>c</kbd> in the terminal. This is slightly faster than reloading the entire config as the audio processing does not need to reinitialize.
 ```
-$ pkill -USR2 cava
+$ pkill -USR2 jia
 ```
 
 Colors can be loaded from a separate file by using the `theme` option in the config.
@@ -727,21 +727,21 @@ Colors can be loaded from a separate file by using the `theme` option in the con
 ![3_139](https://cloud.githubusercontent.com/assets/6376571/8670181/9db0ef50-29e8-11e5-81bc-3e2bb9892da0.png)
 
 
-Using cava in other applications
+Using jia in other applications
 --------------------------------
 
-### cavacore library
+### jiacore library
 
-The core processing engine in cava has been split into a separate library `cavacore`. See CAVACORE.md for details.
+The core processing engine in jia has been split into a separate library `jiacore`. See jiaCORE.md for details.
 
 ### Raw Output
 
-You can also use Cava's output for other programs by using raw output mode, which will write bar data to `STDOUT` that can be piped into other processes. More information on this option is documented in [the example config file](/example_files/config).
+You can also use jia's output for other programs by using raw output mode, which will write bar data to `STDOUT` that can be piped into other processes. More information on this option is documented in [the example config file](/example_files/config).
 
-A useful starting point example script written in python that consumes raw data can be found [here](https://github.com/karlstav/cava/issues/123#issuecomment-307891020).
+A useful starting point example script written in python that consumes raw data can be found [here](https://github.com/karlstav/jia/issues/123#issuecomment-307891020).
 
-### [cava2sse](https://codeberg.org/dnalor/cava2sse)
-is a stand-alone component for making Cava's raw values available as [server-sent events](https://en.wikipedia.org/wiki/Server-sent_events). With this, any application can use CAVA's output data over the network.
+### [jia2sse](https://codeberg.org/dnalor/jia2sse)
+is a stand-alone component for making jia's raw values available as [server-sent events](https://en.wikipedia.org/wiki/Server-sent_events). With this, any application can use jia's output data over the network.
 
 Contribution
 ------
